@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+<title id="title">The phrase shelf</title><desc id="desc">Three paper cards with a television, crescent moon and heart bookmark on a wooden shelf.</desc>
+<defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2" fill="#655fa6"/></pattern><g id="card"><rect x="8" y="12" width="340" height="340" rx="23" fill="#181537"/><rect width="340" height="340" rx="23" fill="#fff0cd"/><path d="M270 0h48q22 0 22 22v48z" fill="#efcb92"/></g></defs>
+<rect width="1280" height="640" fill="#29245a"/><rect x="38" y="32" width="1204" height="576" rx="30" fill="url(#dots)"/>
+<g transform="translate(105 152) rotate(-8 170 170)"><use href="#card"/><path d="M55 80h225v150H128l-54 45v-45H55z" fill="#3356b5"/><rect x="99" y="112" width="139" height="89" rx="11" fill="none" stroke="#fff0cd" stroke-width="10"/><path d="m152 132 42 25-42 24z" fill="#ff8975"/></g>
+<g transform="translate(815 135) rotate(8 170 170)"><use href="#card"/><path d="M115 0h110v218l-55-32-55 32z" fill="#d95060"/><path d="M170 140q-66-41-39-65 18-15 39 9 23-25 42-8 24 23-42 64z" fill="#fff0cd"/><path d="M65 269h208m-208 25h140" stroke="#d4ad82" stroke-width="8" stroke-linecap="round"/></g>
+<g transform="translate(470 179)"><use href="#card"/><path d="M64 58h209v163H134l-50 45v-45H64z" fill="#7066b0"/><path d="M186 81a61 61 0 1 0 41 89 63 63 0 0 1-41-89z" fill="#ffd475"/><circle cx="229" cy="105" r="7" fill="#fff0cd"/></g>
+<path d="M142 541h45v39h-45zm952 0h45v39h-45z" fill="#a987c7"/><rect x="82" y="516" width="1116" height="28" rx="10" fill="#efa958"/>
+</svg>

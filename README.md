@@ -1,224 +1,78 @@
-<!-- 👵 MOM'S AMAZON ALEXA — REPOSITORY PRESENTATION (L3 SHOWCASE) -->
+![Paper phrase cards showing a TV play button, a crescent moon and a heart bookmark on an indigo shelf.](assets/banner/banner.png)
 
-<div align="center">
+# 👵 MOM's Amazon Alexa
 
-<img src="docs/assets/banner.png" alt="MOM's Amazon Alexa banner" width="100%">
+A browsable phrasebook for Alexa and Fire TV. Start with what you want to do, such as turning on captions or dimming the lights. Open a command to compare ways to say it, check which phrases need a custom routine, and save favorites for next time.
 
-# **👵 MOM's Amazon Alexa**
+## 📑 Contents
 
-**An accessible, senior-friendly voice command dashboard, Fire TV controller guide, and daily routine assistant built with React 19, TypeScript, and Tailwind CSS.**
+[Features](#-features) · [Command categories](#-command-categories) · [How it works](#-how-it-works) · [Run locally](#-run-locally) · [Project layout](#-project-layout) · [Contributing](#-contributing) · [License](#-license)
 
-[![Status](https://img.shields.io/badge/status-active%20%26%20verified-success?style=flat-square)](#-voice-categories)
-[![React](https://img.shields.io/badge/react-19.0.0-61DAFB?style=flat-square&logo=react)](package.json)
-[![TypeScript](https://img.shields.io/badge/typescript-5.8.2-3178C6?style=flat-square&logo=typescript)](tsconfig.json)
-[![Vite](https://img.shields.io/badge/bundler-Vite%206-646CFF?style=flat-square&logo=vite)](vite.config.ts)
-[![Accessibility](https://img.shields.io/badge/accessibility-Senior%20Friendly%20%7C%20High%20Contrast-green?style=flat-square)](#-senior-first-design)
-[![License: MIT](https://img.shields.io/badge/license-MIT-informational?style=flat-square)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/traikdude/MOMs-Amazon-Alexa?style=flat-square&color=2ea44f)](https://github.com/traikdude/MOMs-Amazon-Alexa)
+## 🚀 Features
 
-<p align="center">
-  <a href="#-overview"><b>Overview</b></a> •
-  <a href="#-core-features"><b>Features</b></a> •
-  <a href="#-voice-categories"><b>Categories</b></a> •
-  <a href="#-senior-first-design"><b>Accessibility</b></a> •
-  <a href="#-architecture"><b>Architecture</b></a> •
-  <a href="#-quick-start--local-development"><b>Quick Start</b></a> •
-  <a href="#-contributing"><b>Contributing</b></a> •
-  <a href="#-license"><b>License</b></a>
-</p>
+| In the app | What you can do |
+|---|---|
+| Browse | Choose a category and expand a command to see alternative phrases and usage notes. [Command browser](src/App.tsx) |
+| Search | Match words in a phrase, command name, description or note. Try `captions` to find wording for subtitles. [Search implementation](src/App.tsx) |
+| Choose familiar wording | Browse by native command or custom routine and use the senior-friendly filter to pick out conversational alternatives. [Phrase annotations](src/constants.ts) · [Filters and badges](src/App.tsx) |
+| Keep favorites | Tap the heart beside a phrase to bring it onto the overview. Favorites persist in this browser's local storage. [Favorites implementation](src/App.tsx) |
+| Draft a custom command | Walk through the trigger, action and target, then review the details together. The final button clears the draft. [Four-step wizard](src/App.tsx) |
 
-</div>
+## 🎙️ Command categories
 
----
+The [phrase catalog](src/constants.ts) groups commands by what the speaker wants to do.
 
-## 📑 Table of Contents
+| Category | What to look for |
+|---|---|
+| 📺 TV General Controls | Power, playback and volume |
+| 🎬 Streaming App Launchers | Phrases for opening a streaming app |
+| 🔠 Captions & Navigation | Subtitles and moving around the TV interface |
+| 💡 Lighting Controls | Switching lights and adjusting brightness |
+| 🎵 Audio & Music | Music playback and ambient sounds |
+| 💜 Daily Life & Wellbeing | Everyday prompts and reminders |
+| 🏠 House-Wide Controls | Commands that bring multiple devices into a routine |
 
-- [✨ Overview](#-overview)
-- [🚀 Core Features](#-core-features)
-  - [1. Senior-Optimized Natural Phrasing](#1-senior-optimized-natural-phrasing)
-  - [2. Fire TV & Streaming Navigation](#2-fire-tv--streaming-navigation)
-  - [3. Daily Routine & Health Reminders](#3-daily-routine--health-reminders)
-  - [4. High-Contrast Accessible Interface](#4-high-contrast-accessible-interface)
-  - [5. Printable Reference Guides](#5-printable-reference-guides)
-- [🎙️ Voice Command Categories](#-voice-command-categories)
-- [💖 Senior-First Design Principles](#-senior-first-design-principles)
-- [🏗️ Architecture & Component Flow](#-architecture--component-flow)
-- [🛠️ Tech Stack](#-tech-stack)
-- [⚡ Quick Start & Local Development](#-quick-start--local-development)
-- [🗂️ Repository Structure](#-repository-structure)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+## 🏗️ How it works
 
----
+The [React entry point](src/main.tsx) mounts a single-page interface. The [catalog](src/constants.ts) supplies the phrases, and the [app](src/App.tsx) builds the overview, browse and search views from them. React and TypeScript power the interface, with Tailwind CSS for styling, Lucide for icons, Motion for transitions and Vite for the build. [Package manifest](package.json) · [Vite configuration](vite.config.ts)
 
-## ✨ Overview
+**Current scope.** The app is a reference you read while speaking to your Alexa device. Custom routine setup happens separately in Alexa. The wizard stops at review, and device execution, microphone input and a dedicated print layout are outside the current implementation.
 
-**MOM's Amazon Alexa** is an empathetic voice assistant companion and visual reference studio designed to bridge the technology gap for elders, parents, and seniors.
+## ⚡ Run locally
 
-Built with **React 19** and **TypeScript**, the platform catalogs over 70 native Alexa commands and custom voice routines categorized into intuitive everyday actions (TV controls, channel launching, volume adjustment, bedtime routines, medication reminders, and family communication). Every command is annotated with senior-intuitive phrasing options that match natural conversational speech patterns rather than robotic keyword syntax.
+From the repository root with Node.js and npm installed:
 
----
-
-## 🚀 Core Features
-
-```mermaid
-mindmap
-  root((👵 MOM's Alexa))
-    📺 Fire TV Controls
-      Power On / Standby
-      Pause / Resume / Rewind
-      Volume Up / Down / Mute
-    🎬 Streaming Portals
-      Direct Netflix & Prime Launch
-      YouTube & Live TV
-      Movie Title Search
-    ⏰ Routine & Care
-      Morning Coffee Briefing
-      Medication Check-In
-      Goodnight & Bedtime Dimming
-    💖 Senior Accessibility
-      Conversational Variations
-      High-Contrast Typography
-      One-Click Audio Reading
+```powershell
+npm install
+npm run dev
 ```
 
-### 1. Senior-Optimized Natural Phrasing
-Includes dozens of conversational alternatives (e.g. *"Alexa, wake up the TV"*, *"Alexa, wait a minute"*, *"Alexa, hold on"*) mapped to reliable Alexa routines.
+Open the local URL printed by Vite. The [development script](package.json) requests port 3000.
 
-### 2. Fire TV & Streaming Navigation
-Direct voice shortcuts to switch inputs, launch Netflix/Prime/YouTube, search for specific movies, or adjust volume without hunting for tiny remote buttons.
+To type-check, create the static build in `dist/`, and preview that build locally:
 
-### 3. Daily Routine & Health Reminders
-Preset routines for morning weather/news broadcasts, hydration and medication reminders, and evening light dimming.
-
-### 4. High-Contrast Accessible Interface
-Large readable fonts, color-coded section badges, clear iconography, and zero visual clutter for easy tablet and desktop browsing.
-
-### 5. Printable Reference Guides
-Clean print-friendly layouts that can be printed as a physical kitchen or nightstand cheat sheet.
-
----
-
-## 🎙️ Voice Command Categories
-
-| Section | Domain | Sample Senior-Friendly Phrase |
-|---|---|---|
-| 📺 **TV General** | Power, Playback, Volume | *"Alexa, wake up the TV"* / *"Alexa, freeze the TV"* |
-| 🎬 **Streaming Channels** | Netflix, Prime, YouTube | *"Alexa, put on Netflix"* / *"Alexa, open my movies"* |
-| 🔊 **Audio & Volume** | Volume steps, Mute, Quiet mode | *"Alexa, make it louder"* / *"Alexa, hush the TV"* |
-| ⏰ **Care & Reminders** | Medication, Tea time, Check-ins | *"Alexa, remind me to take afternoon pills at 4 PM"* |
-| 🌙 **Night & Morning** | Lighting scenes, Sleep timers | *"Alexa, goodnight Mom"* (Turns off TV, dims lights) |
-
----
-
-## 💖 Senior-First Design Principles
-
-* **Forgiving Voice Recognition**: Accommodates hesitations, pauses, and colloquial phrasing.
-* **Zero Technical Jargon**: Replaces terms like "Input HDMI 2" with "Switch to Cable TV".
-* **Visual Reassurance**: Clear status indicators showing whether a phrase is a native Alexa command or requires a custom Alexa Routine.
-
----
-
-## 🏗️ Architecture & Component Flow
-
-```mermaid
-flowchart TD
-    subgraph DATA["📚 Constants & Voice Dictionary"]
-        CONST["constants.ts (SECTIONS, Commands, Phrases)"]
-    end
-
-    subgraph CLIENT["⚛️ React 19 Client (Vite 6)"]
-        APP["App.tsx (Category Selector & Search)"]
-        CARD["Command Cards (High-Contrast UI)"]
-        PRINT["Print Layout Formatter"]
-        APP --> CARD & PRINT
-    end
-
-    subgraph HARDWARE["🎙️ Amazon Alexa & Fire TV"]
-        ECHO["Echo Dot / Echo Show"]
-        FIRETV["Fire TV Stick / Cube"]
-    end
-
-    CONST --> APP
-    APP -.->|"Spoken by User"| ECHO
-    ECHO -->|"HDMI-CEC / Smart Home"| FIRETV
+```powershell
+npm run lint
+npm run build
+npm run preview
 ```
 
----
+The build output can be served by a static web host. The repository supplies the build and local preview commands.
 
-## 🛠️ Tech Stack
+## 🗂️ Project layout
 
-* **Frontend Framework**: React 19 (`react` 19.0.0, `react-dom` 19.0.0)
-* **Language & Typing**: TypeScript 5.8.2 (`tsconfig.json`)
-* **Build System**: Vite 6.2.0 (`vite.config.ts`)
-* **Styling**: Tailwind CSS with warm, high-contrast accessible palettes
-* **Iconography**: Lucide React (`lucide-react` 0.546.0)
-
----
-
-## ⚡ Quick Start & Local Development
-
-### Prerequisites
-* [Node.js](https://nodejs.org/) (v18+ or v20+)
-* `npm` or `pnpm`
-
-### Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/traikdude/MOMs-Amazon-Alexa.git
-   cd MOMs-Amazon-Alexa
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the local Vite server:
-   ```bash
-   npm run dev
-   ```
-4. Open `http://localhost:3000` in your browser.
-
----
-
-## 🗂️ Repository Structure
-
-```text
-MOMs-Amazon-Alexa/
-├── docs/                        # Presentation & visual assets
-│   └── assets/
-│       └── banner.png           # L3 Showcase high-resolution hero banner
-├── src/
-│   ├── App.tsx                  # 40KB+ Accessible command browser & filter
-│   ├── constants.ts             # 37KB+ Voice command dictionary & senior phrases
-│   ├── index.css                # Accessible styling & print stylesheet
-│   └── main.tsx                 # React 19 DOM entrypoint
-├── package.json                 # Project dependencies & scripts
-├── tsconfig.json                # TypeScript compiler configuration
-├── vite.config.ts               # Vite bundler configuration
-├── README.md                    # L3 Showcase presentation documentation
-└── LICENSE                      # MIT Open Source License
-```
-
----
+| Path | Responsibility |
+|---|---|
+| [src/constants.ts](src/constants.ts) | Category definitions, phrase text, routine labels and usage notes |
+| [src/App.tsx](src/App.tsx) | Browsing, filtering, favorites and the custom command wizard |
+| [src/index.css](src/index.css) | Shared styles and typography |
+| [index.html](index.html) · [src/main.tsx](src/main.tsx) | Browser entry and React mounting point |
+| [assets/banner](assets/banner) | README artwork, editable vector alternative and social preview |
 
 ## 🤝 Contributing
 
-1. Fork the repository and create your branch (`git checkout -b feature/new-senior-phrase`).
-2. Add new phrases or routine mappings in `src/constants.ts`.
-3. Verify that the build succeeds: `npm run build`.
-4. Submit a Pull Request.
-
----
+To suggest another way to say a command, edit its phrase list in [the catalog](src/constants.ts). Mark whether it needs a routine, add a note explaining when to use it, then run the type check and build above before opening a pull request.
 
 ## 📄 License
 
-Distributed under the **MIT License**. See [LICENSE](LICENSE) for details.
-
----
-
-<div align="center">
-
-*Dedicated to Family Care, Accessible Technology & Senior Independence.*  
-**MOM's Amazon Alexa · React 19 · TypeScript · Accessible Voice UI**
-
-</div>
+Distributed under the [MIT License](LICENSE).
